@@ -1,0 +1,65 @@
+
+# ---------------------------------------------------------------------------- #
+# Folder options
+# ---------------------------------------------------------------------------- #
+DIRECTORY:
+  MODEL_PATH: './Multiclass_model/model/train_model/model_2.pt'
+  OPTIMIZE_MODEL_PATH: './Multiclass_model/model/optimize_model/model.pt'
+  BEST_MODEL_PATH: './Multiclass_model/model/train_model/model_2_best.pt'
+  DATA_PATH: './metadata/data2/'
+  TEST_DATA_PATH: './metadata/test_data/'
+  TFLITE_MODEL_PATH: './Multiclass_model/model/tflite_model/'
+  TEST_CSV: './metadata/label_test.csv'
+  DATA_CSV: './metadata/label2.csv'
+
+# ---------------------------------------------------------------------------- #
+# Parameter options
+# ---------------------------------------------------------------------------- #
+PARAMETER:
+  LEARNING_RATE: 0.00001
+  EMA_DECAY: 0.9999
+  MAX_LR: 0.001
+  WEIGHT_DECAY: 0.0001
+  DEVICE: 'cuda'
+
+# ---------------------------------------------------------------------------- #
+# Train options
+# ---------------------------------------------------------------------------- #
+TRAIN_OPTION:
+  BATCH_SIZE: 16
+  NUM_EPOCH: 50
+  OFFLINE_AUG: ['perspect','rotate','cutout','mosaic']
+
+# ---------------------------------------------------------------------------- #
+# Backbone options
+# ---------------------------------------------------------------------------- #
+BACKBONE_OPTION:
+  BACKBONE: 'mobilenetv2_050'
+  PRETRAINED: True
+  DROP_PATH_RATE: 0.3
+
+# ---------------------------------------------------------------------------- #
+# Writer options
+# ---------------------------------------------------------------------------- # 
+WRITER_OPTION:
+  LOG_PATH: '/home/vinhtran1/tensorboard/runs'
+
+# ---------------------------------------------------------------------------- #
+# Label options
+# ---------------------------------------------------------------------------- #
+LABEL_OPTION:
+  NUM_OF_LABEL: 3
+  LABEL: ['Banh_chung','Cay_dao','Cay_mai']
+
+# ---------------------------------------------------------------------------- #
+# Converter options
+# ---------------------------------------------------------------------------- #
+CONVERTER_OPTION:
+  SAVE_FOLDER: 'tflite_model'
+  TFLITE_MODEL: 'mobilenetv2_050.tflite'
+  CONVERT_MODEL_PATH: './Multiclass_model/model/'
+  RE_CONVERT: True
+  DUMMY_HEIGHT: 224
+  DUMMY_WIDTH: 224
+
+
