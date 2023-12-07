@@ -1,0 +1,84 @@
+plugins {
+    id 'com.android.application'
+    id 'com.google.gms.google-services'
+}
+
+android {
+    compileSdk 31
+
+    defaultConfig {
+        applicationId "it.polocorese.aicamera"
+        minSdk 23
+        resConfigs "en"
+        targetSdk 29
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    packagingOptions {
+        resources.excludes.add("META-INF/*")
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    aaptOptions {
+        noCompress "tflite"
+    }
+
+    splits {
+
+        // Configures multiple APKs based on ABI.
+        abi {
+
+            // Enables building multiple APKs per ABI.
+            enable true
+
+            // By default all ABIs are included, so use reset() and include to specify that you only
+            // want APKs for x86 and x86_64.
+
+            // Resets the list of ABIs for Gradle to create APKs for to none.
+            reset()
+
+            // Specifies a list of ABIs for Gradle to create APKs for.
+            include "x86", "x86_64"
+
+            // Specifies that you don't want to also generate a universal APK that includes all ABIs.
+            universalApk false
+        }
+    }
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    implementation 'com.google.mlkit:image-labeling-custom:17.0.1'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'com.google.android.material:material:1.6.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+
+    implementation 'androidx.camera:camera-core:1.1.0'
+    implementation 'androidx.camera:camera-view:1.1.0'
+    implementation 'androidx.camera:camera-camera2:1.1.0'
+    implementation 'androidx.camera:camera-lifecycle:1.1.0'
+
+    androidTestImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation "androidx.compose.ui:ui-test-junit4:1.0.4"
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    implementation "com.github.brianPlummer:tinydancer:0.1.2"
+}
